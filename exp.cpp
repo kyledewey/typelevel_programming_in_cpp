@@ -39,6 +39,9 @@ int main() {
 
   // left(true, Nat)
   assert((TypeOf<SumLeftExp<BoolLiteral<True>, NatType>, EmptyMap>::result::debugFlag) == 4);
-  
+
+  // right(Bool, 0)
+  assert((TypeOf<SumRightExp<BoolType, NatLiteral<Zero> >, EmptyMap>::result::debugFlag) == 4);
+
   return 0;
 }
