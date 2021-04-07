@@ -12,5 +12,8 @@ int main() {
   assert((TypeOf<AndExp<BoolLiteral<False>, BoolLiteral<True> >, EmptyMap>::result::debugFlag) == 0);
   assert((TypeOf<EqualsExp<NatLiteral<Zero>, NatLiteral<Succ<Zero> > >, EmptyMap>::result::debugFlag) == 0);
   assert((TypeOf<EqualsExp<BoolLiteral<True>, BoolLiteral<False> >, EmptyMap>::result::debugFlag) == 0);
+
+  // let _0 = false in _0
+  assert((TypeOf<LetExp<Zero, BoolLiteral<False>, VariableExp<Zero> >, EmptyMap>::result::debugFlag == 0));
   return 0;
 }

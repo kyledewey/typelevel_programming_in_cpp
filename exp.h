@@ -193,6 +193,16 @@ struct TypeOf<EqualsExp<E1, E2>, Map> {
                     typename TypeOf<E2, Map>::result>::ok typedef e1E2HaveSameTypes;
   BoolType typedef result;
 };
+
+// Let: put variable in scope with type of first expression, and evaluate
+// second expression
+template <typename X, typename E1, typename E2, typename Map>
+struct TypeOf<LetExp<X, E1, E2>, Map> {
+  typename TypeOf<E2,
+                  NonEmptyMap<X,
+                              typename TypeOf<E1, Map>::result,
+                              Map> >::result typedef result;
+};
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif
