@@ -4,12 +4,8 @@
 // C++-based definition of https://github.com/csun-tavlab/scala_typelevel_experimentation/blob/master/exp.scala
 // A type-level typechecker for a simple functional programming language.
 
+#include "peano.h"
 #include "map.h"
-
-// ---BEGIN DEFINITIONS FOR BOOLEANS---
-struct True {};
-struct False {};
-// ---END DEFINITIONS FOR BOOLEANS---
 
 // ---BEGIN DEFINITIONS FOR TYPES---
 struct BoolType {
@@ -154,11 +150,13 @@ struct TypeOf {};
 
 template <typename N, typename Map>
 struct TypeOf<NatLiteral<N>, Map> {
+  typename IsNat<N>::ok typedef nOk;
   NatType typedef result;
 };
 
 template <typename B, typename Map>
 struct TypeOf<BoolLiteral<B>, Map> {
+  typename IsBool<B>::ok typedef bOk;
   BoolType typedef result;
 };
 
