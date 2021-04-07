@@ -208,9 +208,19 @@ struct TypeOf<LetExp<X, E1, E2>, Map> {
 // Put E1's type in scope while typechecking E1.
 template <typename X, typename XType, typename E1, typename E2, typename Map>
 struct TypeOf<RecExp<X, XType, E1, E2>, Map> {
-  typename SameType<typename TypeOf<E1, NonEmptyMap<X, XType, Map> >::result, XType>::ok e1TypeOk;
+  typename SameType<typename TypeOf<E1, NonEmptyMap<X, XType, Map> >::result, XType>::ok typedef e1TypeOk;
   typename TypeOf<E2,
                   NonEmptyMap<X, XType, Map> >::result typedef result;
+};
+
+// if: e1 should be a boolean
+// e2 and e3 should have the same types, and the return type is the same as these
+template <typename E1, typename E2, typename E3, typename Map>
+struct TypeOf<IfExp<E1, E2, E3>, Map> {
+  typename SameType<typename TypeOf<E1, Map>::result, BoolType>::ok typedef e1TypeOk;
+  typename SameType<typename TypeOf<E2, Map>::result,
+                    typename TypeOf<E3, Map>::result>::ok typedef e2E3HaveSameTypes;
+  typename TypeOf<E2, Map>::result typedef result;
 };
 
 // ---END DEFINITIONS FOR TYPECHECKER---

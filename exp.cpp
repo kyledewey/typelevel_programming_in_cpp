@@ -18,5 +18,9 @@ int main() {
 
   // rec _0: nat = _0 in _0
   assert((TypeOf<RecExp<Zero, NatType, VariableExp<Zero>, VariableExp<Zero> >, EmptyMap>::result::debugFlag == 1));
+
+  // if (true) 0 else 1
+  assert((TypeOf<IfExp<BoolLiteral<True>, NatLiteral<Zero>, NatLiteral<Succ<Zero> > >, EmptyMap>::result::debugFlag) == 1);
+
   return 0;
 }
