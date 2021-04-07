@@ -11,3 +11,10 @@ For lists:
 clang++ lists.cpp
 ./a.out
 ```
+
+For maps:
+
+```shell
+clang++ map.cpp
+./a.out
+```
