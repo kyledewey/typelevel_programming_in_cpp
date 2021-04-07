@@ -37,4 +37,17 @@ struct Append<Cons<Head, Tail>, L2> {
   Cons<Head, typename Append<Tail, L2>::result> typedef result;
 };
 
+template <typename L, typename N>
+struct GetNth {};
+
+template <typename Head, typename Tail>
+struct GetNth<Cons<Head, Tail>, Zero> {
+  Head typedef result;
+};
+
+template <typename Head, typename Tail, typename N>
+struct GetNth<Cons<Head, Tail>, Succ<N> > {
+  typename GetNth<Tail, N>::result typedef result;
+};
+
 #endif
