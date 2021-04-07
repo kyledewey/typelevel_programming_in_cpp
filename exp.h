@@ -231,6 +231,13 @@ struct TypeOf<LambdaExp<X, XType, E>, Map> {
 };
 
 template <typename E1, typename E2, typename Map>
+struct TypeOf<CallExp<E1, E2>, Map> {
+  typename SameType<typename TypeOf<E1, Map>::result::paramType,
+                    typename TypeOf<E2, Map>::result>::ok typedef isLambdaWithOkParamType;
+  typename TypeOf<E1, Map>::result::returnType typedef result;
+};
+
+template <typename E1, typename E2, typename Map>
 struct TypeOf<ProductExp<E1, E2>, Map> {
   ProductType<typename TypeOf<E1, Map>::result,
               typename TypeOf<E2, Map>::result> typedef result;

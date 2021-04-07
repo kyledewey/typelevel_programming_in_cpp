@@ -25,6 +25,9 @@ int main() {
   // (_0: Int) => _0
   assert((TypeOf<LambdaExp<Zero, NatType, VariableExp<Zero> >, EmptyMap>::result::debugFlag) == 2);
 
+  // ((_0: Int) => _0)(1)
+  assert((TypeOf<CallExp<LambdaExp<Zero, NatType, VariableExp<Zero> >, NatLiteral<Succ<Zero> > >, EmptyMap>::result::debugFlag) == 1);
+
   // (0, true)
   assert((TypeOf<ProductExp<NatLiteral<Zero>, BoolLiteral<True> >, EmptyMap>::result::debugFlag) == 3);
 
