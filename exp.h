@@ -162,7 +162,7 @@ struct TypeOf<BoolLiteral<B>, Map> {
 
 template <typename Name, typename Map>
 struct TypeOf<VariableExp<Name>, Map> {
-  typename Lookup<Name, Map>::result typedef result;
+  typename Lookup<Map, Name>::result typedef result;
 };
 
 template <typename T1, typename T2>
