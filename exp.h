@@ -170,23 +170,29 @@ struct SameType {};
 
 template <typename T>
 struct SameType<T, T> {
-  True typedef result;
+  True typedef ok;
 };
 
 template <typename E1, typename E2, typename Map>
 struct TypeOf<AddExp<E1, E2>, Map> {
-  typename SameType<typename TypeOf<E1, Map>::result, NatType>::result typedef e1Ok;
-  typename SameType<typename TypeOf<E2, Map>::result, NatType>::result typedef e2Ok;
+  typename SameType<typename TypeOf<E1, Map>::result, NatType>::ok typedef e1Ok;
+  typename SameType<typename TypeOf<E2, Map>::result, NatType>::ok typedef e2Ok;
   NatType typedef result;
 };
 
 template <typename E1, typename E2, typename Map>
 struct TypeOf<AndExp<E1, E2>, Map> {
-  typename SameType<typename TypeOf<E1, Map>::result, BoolType>::result typedef e1Ok;
-  typename SameType<typename TypeOf<E2, Map>::result, BoolType>::result typedef e2Ok;
+  typename SameType<typename TypeOf<E1, Map>::result, BoolType>::ok typedef e1Ok;
+  typename SameType<typename TypeOf<E2, Map>::result, BoolType>::ok typedef e2Ok;
   BoolType typedef result;
 };
 
+template <typename E1, typename E2, typename Map>
+struct TypeOf<EqualsExp<E1, E2>, Map> {
+  typename SameType<typename TypeOf<E1, Map>::result,
+                    typename TypeOf<E2, Map>::result>::ok typedef e1E2HaveSameTypes;
+  BoolType typedef result;
+};
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif

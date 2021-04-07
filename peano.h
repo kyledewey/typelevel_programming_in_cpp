@@ -58,7 +58,7 @@ struct IsNat<Zero> {
 
 template <typename N>
 struct IsNat<Succ<N> > {
-  typename IsNat<N>::result typedef ok;
+  typename IsNat<N>::ok typedef ok;
 };
 // ---END DEFINITIONS FOR ISNAT
 
