@@ -230,6 +230,12 @@ struct TypeOf<LambdaExp<X, XType, E>, Map> {
              typename TypeOf<E, NonEmptyMap<X, XType, Map> >::result> typedef result;
 };
 
+template <typename E1, typename E2, typename Map>
+struct TypeOf<ProductExp<E1, E2>, Map> {
+  ProductType<typename TypeOf<E1, Map>::result,
+              typename TypeOf<E2, Map>::result> typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif
