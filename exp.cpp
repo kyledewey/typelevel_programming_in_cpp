@@ -27,6 +27,12 @@ int main() {
 
   // (0, true)
   assert((TypeOf<ProductExp<NatLiteral<Zero>, BoolLiteral<True> >, EmptyMap>::result::debugFlag) == 3);
-  
+
+  // fst((0, true))
+  assert((TypeOf<FstExp<ProductExp<NatLiteral<Zero>, BoolLiteral<True> > >, EmptyMap>::result::debugFlag) == 1);
+
+  // snd((0, true))
+  assert((TypeOf<SndExp<ProductExp<NatLiteral<Zero>, BoolLiteral<True> > >, EmptyMap>::result::debugFlag) == 0);
+
   return 0;
 }

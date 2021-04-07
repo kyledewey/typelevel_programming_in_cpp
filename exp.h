@@ -25,15 +25,15 @@ struct LambdaType {
 template <typename T1, typename T2>
 struct ProductType {
   enum { debugFlag = 3 };
-  T1 typedef t1;
-  T2 typedef t2;
+  T1 typedef productT1;
+  T2 typedef productT2;
 };
 
 template <typename T1, typename T2>
 struct SumType {
   enum { debugFlag = 4 };
-  T1 typedef t1;
-  T2 typedef t2;
+  T1 typedef sumT1;
+  T2 typedef sumT2;
 };
 // ---END DEFINITIONS FOR TYPES---
 
@@ -234,6 +234,16 @@ template <typename E1, typename E2, typename Map>
 struct TypeOf<ProductExp<E1, E2>, Map> {
   ProductType<typename TypeOf<E1, Map>::result,
               typename TypeOf<E2, Map>::result> typedef result;
+};
+
+template <typename E, typename Map>
+struct TypeOf<FstExp<E>, Map> {
+  typename TypeOf<E, Map>::result::productT1 typedef result;
+};
+
+template <typename E, typename Map>
+struct TypeOf<SndExp<E>, Map> {
+  typename TypeOf<E, Map>::result::productT2 typedef result;
 };
 
 // ---END DEFINITIONS FOR TYPECHECKER---
