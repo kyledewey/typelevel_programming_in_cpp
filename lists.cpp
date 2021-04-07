@@ -9,6 +9,7 @@ int main() {
   Succ<two> typedef three;
   
   Cons<Zero, Cons<Zero, Nil> > typedef len2;
+  Cons<one, Cons<two, Cons<three, Nil> > > typedef oneTwoThree;
   
   // Cons(Zero, Cons(Zero, Nil)).length
   //std::cout << Length<Cons<Zero, Cons<Zero, Nil> > >::result::value << std::endl;
@@ -21,7 +22,11 @@ int main() {
 
   // Cons(1, Cons(2, Cons(3, Nil))).getNth(1)
   std::cout << "first element (starting from zero) from a list 1, 2, 3: "
-            << GetNth<Cons<one, Cons<two, Cons<three, Nil> > >, one>::result::value << std::endl;
+            << GetNth<oneTwoThree, one>::result::value << std::endl;
+
+  // Cons(1, Cons(2, Cons(3, Nil))).reverse[0]
+  std::cout << "[1, 2, 3].reverse[0]: "
+            << Reverse<oneTwoThree>::result::head::value << std::endl;
   
   return 0;
 }
