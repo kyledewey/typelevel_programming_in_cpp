@@ -265,6 +265,39 @@ struct TypeOf<SumRightExp<LeftType, E>, Map> {
           typename TypeOf<E, Map>::result> typedef result;
 };
 
+// types of the branches need to be the same
+// return type is whatever either branch is (mirrors if)
+template <typename On, typename LeftX, typename LeftExp, typename RightX, typename RightExp, typename Map>
+struct TypeOf<MatchExp<On, LeftX, LeftExp, RightX, RightExp>, Map> {
+  // get the sum type
+  // typename TypeOf<On, Map>::result
+
+  // get the type of the left branch
+  // typename TypeOf<LeftExp,
+  //                 NonEmptyMap<LeftX, 
+  //                             typename TypeOf<On, Map>::result::sumT1,
+  //                             Map> >::result
+
+  // get the type of the right branch
+  // typename TypeOf<RightExp,
+  //                 NonEmptyMap<RightX, 
+  //                             typename TypeOf<On, Map>::result::sumT2,
+  //                             Map> >::result
+
+  typename SameType<typename TypeOf<LeftExp,
+                                    NonEmptyMap<LeftX,
+                                                typename TypeOf<On, Map>::result::sumT1,
+                                                Map> >::result,
+                    typename TypeOf<RightExp,
+                                    NonEmptyMap<RightX,
+                                                typename TypeOf<On, Map>::result::sumT2,
+                                                Map> >::result>::ok typedef branchesHaveSameType;
+  typename TypeOf<LeftExp,
+                  NonEmptyMap<LeftX,
+                              typename TypeOf<On, Map>::result::sumT1,
+                              Map> >::result typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif

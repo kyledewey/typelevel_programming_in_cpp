@@ -43,5 +43,14 @@ int main() {
   // right(Bool, 0)
   assert((TypeOf<SumRightExp<BoolType, NatLiteral<Zero> >, EmptyMap>::result::debugFlag) == 4);
 
+  // match(left(true, Nat), _0, _0, _0, true)
+  assert((TypeOf<MatchExp<SumLeftExp<BoolLiteral<True>, NatType>,
+          Zero, VariableExp<Zero>,
+          Zero, BoolLiteral<True> >, EmptyMap>::result::debugFlag) == 0);
+  
+  // match(right(Bool, 0), _0, _0, _0, true)
+  assert((TypeOf<MatchExp<SumRightExp<BoolType, NatLiteral<Zero> >,
+          Zero, VariableExp<Zero>,
+          Zero, BoolLiteral<True> >, EmptyMap>::result::debugFlag) == 0);
   return 0;
 }
