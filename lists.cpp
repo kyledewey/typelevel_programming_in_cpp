@@ -27,6 +27,9 @@ int main() {
   // Cons(1, Cons(2, Cons(3, Nil))).reverse[0]
   std::cout << "[1, 2, 3].reverse[0]: "
             << Reverse<oneTwoThree>::result::head::value << std::endl;
+
+  std::cout << "[1, 2, 3].sum: "
+            << Sum<oneTwoThree>::result::value << std::endl;
   
   return 0;
 }

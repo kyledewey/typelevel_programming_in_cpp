@@ -90,6 +90,23 @@ struct Reverse {
   typename ReverseHelper<Input, Nil>::result typedef result;
 };
 
-// ---END DEFINITIONS FOR REVERSE
+// ---END DEFINITIONS FOR REVERSE---
+
+
+// ---BEGIN DEFINITIONS FOR SUM---
+template <typename L>
+struct Sum {};
+
+template <>
+struct Sum<Nil> {
+  Zero typedef result;
+};
+
+template <typename Head, typename Tail>
+struct Sum<Cons<Head, Tail> > {
+  typename Add<Head, typename Sum<Tail>::result>::result typedef result;
+};
+
+// ---END DEFINITIONS FOR SUM---
 
 #endif
