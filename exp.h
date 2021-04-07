@@ -180,6 +180,13 @@ struct TypeOf<AddExp<E1, E2>, Map> {
   NatType typedef result;
 };
 
+template <typename E1, typename E2, typename Map>
+struct TypeOf<AndExp<E1, E2>, Map> {
+  typename SameType<typename TypeOf<E1, Map>::result, BoolType>::result typedef e1Ok;
+  typename SameType<typename TypeOf<E2, Map>::result, BoolType>::result typedef e2Ok;
+  BoolType typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif
