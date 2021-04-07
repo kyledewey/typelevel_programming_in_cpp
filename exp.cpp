@@ -37,5 +37,8 @@ int main() {
   // snd((0, true))
   assert((TypeOf<SndExp<ProductExp<NatLiteral<Zero>, BoolLiteral<True> > >, EmptyMap>::result::debugFlag) == 0);
 
+  // left(true, Nat)
+  assert((TypeOf<SumLeftExp<BoolLiteral<True>, NatType>, EmptyMap>::result::debugFlag) == 4);
+  
   return 0;
 }

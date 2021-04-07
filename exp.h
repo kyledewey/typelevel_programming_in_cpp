@@ -253,6 +253,12 @@ struct TypeOf<SndExp<E>, Map> {
   typename TypeOf<E, Map>::result::productT2 typedef result;
 };
 
+template <typename E, typename RightType, typename Map>
+struct TypeOf<SumLeftExp<E, RightType>, Map> {
+  SumType<typename TypeOf<E, Map>::result,
+          RightType> typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif
