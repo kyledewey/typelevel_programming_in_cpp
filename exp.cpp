@@ -15,5 +15,8 @@ int main() {
 
   // let _0 = false in _0
   assert((TypeOf<LetExp<Zero, BoolLiteral<False>, VariableExp<Zero> >, EmptyMap>::result::debugFlag == 0));
+
+  // rec _0: nat = _0 in _0
+  assert((TypeOf<RecExp<Zero, NatType, VariableExp<Zero>, VariableExp<Zero> >, EmptyMap>::result::debugFlag == 1));
   return 0;
 }

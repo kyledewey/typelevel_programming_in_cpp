@@ -203,6 +203,16 @@ struct TypeOf<LetExp<X, E1, E2>, Map> {
                               typename TypeOf<E1, Map>::result,
                               Map> >::result typedef result;
 };
+
+// Rec: make sure E1 is of the provided type.
+// Put E1's type in scope while typechecking E1.
+template <typename X, typename XType, typename E1, typename E2, typename Map>
+struct TypeOf<RecExp<X, XType, E1, E2>, Map> {
+  typename SameType<typename TypeOf<E1, NonEmptyMap<X, XType, Map> >::result, XType>::ok e1TypeOk;
+  typename TypeOf<E2,
+                  NonEmptyMap<X, XType, Map> >::result typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif
