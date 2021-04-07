@@ -223,6 +223,13 @@ struct TypeOf<IfExp<E1, E2, E3>, Map> {
   typename TypeOf<E2, Map>::result typedef result;
 };
 
+// lambda: x is put into scope with declared type
+template <typename X, typename XType, typename E, typename Map>
+struct TypeOf<LambdaExp<X, XType, E>, Map> {
+  LambdaType<XType,
+             typename TypeOf<E, NonEmptyMap<X, XType, Map> >::result> typedef result;
+};
+
 // ---END DEFINITIONS FOR TYPECHECKER---
 
 #endif

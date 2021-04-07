@@ -22,5 +22,8 @@ int main() {
   // if (true) 0 else 1
   assert((TypeOf<IfExp<BoolLiteral<True>, NatLiteral<Zero>, NatLiteral<Succ<Zero> > >, EmptyMap>::result::debugFlag) == 1);
 
+  // (_0: Int) => _0
+  assert((TypeOf<LambdaExp<Zero, NatType, VariableExp<Zero> >, EmptyMap>::result::debugFlag) == 2);
+  
   return 0;
 }
