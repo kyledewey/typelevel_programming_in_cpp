@@ -18,3 +18,10 @@ For maps:
 clang++ map.cpp
 ./a.out
 ```
+
+For expressions (currently a typechecker):
+
+```shell
+clang++ exp.cpp
+./a.out
+```
