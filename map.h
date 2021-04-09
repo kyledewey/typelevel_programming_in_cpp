@@ -6,9 +6,9 @@ struct EmptyMap {};
 
 template <typename Key, typename Value, typename Rest>
 struct NonEmptyMap {
-  Key typedef key;
-  Value typedef value;
-  Rest typedef rest;
+  using key = Key;
+  using value = Value;
+  using rest = Rest;
 };
 // ---END BASIC MAP DEFINITION---
 
@@ -19,12 +19,12 @@ struct Lookup {};
 
 template <typename Key, typename Value, typename Rest>
 struct Lookup<NonEmptyMap<Key, Value, Rest>, Key> {
-  Value typedef result;
+  using result = Value;
 };
 
 template <typename OtherKey, typename OtherValue, typename Rest, typename Key>
 struct Lookup<NonEmptyMap<OtherKey, OtherValue, Rest>, Key> {
-  typename Lookup<Rest, Key>::result typedef result;
+  using result = typename Lookup<Rest, Key>::result;
 };
 // ---END DEFINITIONS FOR LOOKUP---
 

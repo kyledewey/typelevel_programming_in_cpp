@@ -3,16 +3,15 @@
 #include "peano.h"
 
 int main() {
-  Zero typedef zero;
-  Succ<zero> typedef one;
-  Succ<one> typedef two;
-  Succ<two> typedef three;
-  
-  Cons<Zero, Cons<Zero, Nil> > typedef len2;
-  Cons<one, Cons<two, Cons<three, Nil> > > typedef oneTwoThree;
+  using zero = Zero;
+  using one = Succ<zero>;
+  using two = Succ<one>;
+  using three = Succ<two>;
+
+  using len2 = Cons<Zero, Cons<Zero, Nil> >;
+  using oneTwoThree = Cons<one, Cons<two, Cons<three, Nil> > >;
   
   // Cons(Zero, Cons(Zero, Nil)).length
-  //std::cout << Length<Cons<Zero, Cons<Zero, Nil> > >::result::value << std::endl;
   std::cout << "length of list with two elements: "
             << Length<len2>::result::value << std::endl;
   

@@ -12,12 +12,12 @@ struct IsBool {};
 
 template <>
 struct IsBool<True> {
-  True typedef ok;
+  using ok = True;
 };
 
 template <>
 struct IsBool<False> {
-  True typedef ok;
+  using ok = True;
 };
 // ---END ISBOOL DEFINITION---
 
@@ -38,12 +38,12 @@ struct Add {};
 
 template <typename N>
 struct Add<Zero, N> {
-  N typedef result;
+  using result = N;
 };
 
 template <typename N1, typename N2>
 struct Add<Succ<N1>, N2> {
-  Succ<typename Add<N1, N2>::result> typedef result;
+  using result = Succ<typename Add<N1, N2>::result>;
 };
 // ---END DEFINITIONS FOR ADD
 
@@ -53,12 +53,12 @@ struct IsNat {};
 
 template <>
 struct IsNat<Zero> {
-  True typedef ok;
+  using ok = True;
 };
 
 template <typename N>
 struct IsNat<Succ<N> > {
-  typename IsNat<N>::ok typedef ok;
+  using ok = typename IsNat<N>::ok;
 };
 // ---END DEFINITIONS FOR ISNAT
 

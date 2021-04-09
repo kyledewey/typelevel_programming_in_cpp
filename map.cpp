@@ -3,13 +3,13 @@
 #include "peano.h"
 
 int main() {
-  Zero typedef zero;
-  Succ<zero> typedef one;
-  Succ<one> typedef two;
-  Succ<two> typedef three;
+  using zero = Zero;
+  using one = Succ<zero>;
+  using two = Succ<one>;
+  using three = Succ<two>;
 
   // 1 -> 2, 2 -> 3
-  NonEmptyMap<one, two, NonEmptyMap<two, three, EmptyMap> > typedef map;
+  using map = NonEmptyMap<one, two, NonEmptyMap<two, three, EmptyMap> >;
 
   std::cout << "lookup 1: "
             << Lookup<map, one>::result::value << std::endl;

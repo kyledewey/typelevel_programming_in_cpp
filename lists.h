@@ -8,8 +8,8 @@ struct Nil {};
 
 template <typename Head, typename Tail>
 struct Cons {
-  Head typedef head;
-  Tail typedef tail;
+  using head = Head;
+  using tail = Tail;
 };
 // ---END BASIC LIST DEFINITION---
 
@@ -19,12 +19,12 @@ struct Length {};
 
 template <>
 struct Length<Nil> {
-  Zero typedef result;
+  using result = Zero;
 };
 
 template <typename H, typename L>
 struct Length<Cons<H, L> > {
-  Succ<typename Length<L>::result> typedef result;
+  using result = Succ<typename Length<L>::result>;
 };
 // ---END DEFINITIONS FOR LENGTH---
 
@@ -34,12 +34,12 @@ struct Append {};
 
 template <typename L>
 struct Append<Nil, L> {
-  L typedef result;
+  using result = L;
 };
 
 template <typename Head, typename Tail, typename L2>
 struct Append<Cons<Head, Tail>, L2> {
-  Cons<Head, typename Append<Tail, L2>::result> typedef result;
+  using result = Cons<Head, typename Append<Tail, L2>::result>;
 };
 // ---END DEFINITIONS FOR APPEND---
 
@@ -49,12 +49,12 @@ struct GetNth {};
 
 template <typename Head, typename Tail>
 struct GetNth<Cons<Head, Tail>, Zero> {
-  Head typedef result;
+  using result = Head;
 };
 
 template <typename Head, typename Tail, typename N>
 struct GetNth<Cons<Head, Tail>, Succ<N> > {
-  typename GetNth<Tail, N>::result typedef result;
+  using result = typename GetNth<Tail, N>::result;
 };
 // ---END DEFINITIONS FOR GETNTH
 
@@ -76,18 +76,18 @@ struct ReverseHelper {};
 
 template <typename Accum>
 struct ReverseHelper<Nil, Accum> {
-  Accum typedef result;
+  using result = Accum;
 };
 
 template <typename Head, typename Tail, typename Accum>
 struct ReverseHelper<Cons<Head, Tail>, Accum> {
-  typename ReverseHelper<Tail, Cons<Head, Accum> >::result typedef result;
+  using result = typename ReverseHelper<Tail, Cons<Head, Accum> >::result;
 };
 
 // top-level procedure to be called directly
 template <typename Input>
 struct Reverse {
-  typename ReverseHelper<Input, Nil>::result typedef result;
+  using result = typename ReverseHelper<Input, Nil>::result;
 };
 
 // ---END DEFINITIONS FOR REVERSE---
@@ -99,12 +99,12 @@ struct Sum {};
 
 template <>
 struct Sum<Nil> {
-  Zero typedef result;
+  using result = Zero;
 };
 
 template <typename Head, typename Tail>
 struct Sum<Cons<Head, Tail> > {
-  typename Add<Head, typename Sum<Tail>::result>::result typedef result;
+  using result = typename Add<Head, typename Sum<Tail>::result>::result;
 };
 
 // ---END DEFINITIONS FOR SUM---

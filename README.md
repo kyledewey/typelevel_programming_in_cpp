@@ -1,27 +1,14 @@
-For peano arithmetic:
+To make everything:
 
 ```shell
-clang++ peano.cpp
-./a.out
+make
 ```
 
-For lists:
+From here, you can run the separate executables, like so:
 
 ```shell
-clang++ lists.cpp
-./a.out
-```
-
-For maps:
-
-```shell
-clang++ map.cpp
-./a.out
-```
-
-For expressions (currently a typechecker):
-
-```shell
-clang++ exp.cpp
-./a.out
+./peano
+./lists
+./map
+./exp
 ```
